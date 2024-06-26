@@ -1,1 +1,34 @@
-<p>form works!</p>
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()" novalidate>
+  <div>
+    <label for="name">Product Name:</label>
+    <input id="name" formControlName="name" />
+    <div
+      *ngIf="
+        productForm.controls['name'].invalid &&
+        productForm.controls['name'].touched
+      "
+    >
+      Product name is required.
+    </div>
+  </div>
+
+  <div>
+    <label for="value">Product Value:</label>
+    <input id="value" formControlName="value" />
+    <div
+      *ngIf="
+        productForm.controls['value'].invalid &&
+        productForm.controls['value'].touched
+      "
+    >
+      <div *ngIf="productForm.controls['value'].errors?.['required']">
+        Product value is required.
+      </div>
+      <div *ngIf="productForm.controls['value'].errors?.['pattern']">
+        Product value must be a valid number.
+      </div>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="productForm.invalid">Save Product</button>
+</form>

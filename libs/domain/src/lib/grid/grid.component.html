@@ -1,1 +1,14 @@
-<p>grid works!</p>
+<table>
+  <thead>
+    <tr>
+      <th>Product Name</th>
+      <th>Product Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of products">
+      <td>{{ product.name }}</td>
+      <td>{{ product.value | currency }}</td>
+    </tr>
+  </tbody>
+</table>

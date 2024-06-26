@@ -6,6 +6,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import * as fromProduct from './state/product.reducer';
 import { ProductEffects } from './state/product.effects';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -15,7 +16,9 @@ import { ProductEffects } from './state/product.effects';
       fromProduct.productReducer
     ),
     EffectsModule.forFeature([ProductEffects]),
+    ReactiveFormsModule,
   ],
   declarations: [GridComponent, FormComponent],
+  exports: [GridComponent, FormComponent],
 })
 export class DomainModule {}
