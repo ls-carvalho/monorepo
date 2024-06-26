@@ -2,6 +2,7 @@
  * Interface for the 'Product' data
  */
 export interface ProductEntity {
-  id: string | number; // Primary ID
+  id?: string | number; // Primary ID
   name: string;
+  value: number;
 }

@@ -23,6 +23,8 @@ export const initialProductState: ProductState = productAdapter.getInitialState(
   {
     // set initial required properties
     loaded: false,
+    ids: [],
+    entities: {},
   }
 );
 

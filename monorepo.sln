@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "apps", "apps", "{142F018F-9477-4D2B-B60C-BBD5B8557492}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monorepo.Backend", "apps\backend\Monorepo.Backend.csproj", "{4B41BA61-0953-4191-BBD4-AE459DAEAB4A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monorepo.Backend.Test", "apps\backend-test\Monorepo.Backend.Test.csproj", "{DBFFFE1B-4350-49DF-B02D-FD8889C2BD1A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4B41BA61-0953-4191-BBD4-AE459DAEAB4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B41BA61-0953-4191-BBD4-AE459DAEAB4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B41BA61-0953-4191-BBD4-AE459DAEAB4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B41BA61-0953-4191-BBD4-AE459DAEAB4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBFFFE1B-4350-49DF-B02D-FD8889C2BD1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBFFFE1B-4350-49DF-B02D-FD8889C2BD1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBFFFE1B-4350-49DF-B02D-FD8889C2BD1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBFFFE1B-4350-49DF-B02D-FD8889C2BD1A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4B41BA61-0953-4191-BBD4-AE459DAEAB4A} = {142F018F-9477-4D2B-B60C-BBD5B8557492}
+		{DBFFFE1B-4350-49DF-B02D-FD8889C2BD1A} = {142F018F-9477-4D2B-B60C-BBD5B8557492}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7760CB95-F659-4CE0-AAF8-965924F78605}
+	EndGlobalSection
+EndGlobal

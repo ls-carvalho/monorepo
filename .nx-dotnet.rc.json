@@ -1,3 +1,27 @@
 {
-  "nugetPackages": {}
+  "solutionFile": "{npmScope}.nx-dotnet.sln",
+  "inferProjects": true,
+  "nugetPackages": {
+    "HotChocolate.AspNetCore": "13",
+    "Microsoft.EntityFrameworkCore": "7",
+    "Microsoft.EntityFrameworkCore.SqlServer": "7",
+    "Microsoft.EntityFrameworkCore.InMemory": "7",
+    "Microsoft.EntityFrameworkCore.Design": "7",
+    "HotChocolate.Data": "13"
+  },
+  "inferredTargets": {
+    "build": "build",
+    "lint": "lint",
+    "serve": "serve",
+    "test": "test"
+  },
+  "ignorePaths": [],
+  "tags": [
+    "nx-dotnet",
+    "nx-dotnet",
+    "nx-dotnet",
+    "nx-dotnet",
+    "nx-dotnet",
+    "nx-dotnet"
+  ]
 }
