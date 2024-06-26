@@ -15,7 +15,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@monorepo/domain": ["libs/domain/src/index.ts"]
+      "@monorepo/domain": ["libs/domain/src/index.ts"],
+      "@monorepo/generated/backend-types": [
+        "libs/generated/backend-types/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]
