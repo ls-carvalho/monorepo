@@ -12,7 +12,6 @@ builder.Services.ConfigureGraphQL();
 
 var app = builder.Build();
 
-app.UseCors("AllowLocal");
 app.UseSwagger();
 app.UseSwaggerUI();
 app.UseHttpsRedirection();
