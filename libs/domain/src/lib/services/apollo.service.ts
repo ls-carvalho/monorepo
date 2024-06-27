@@ -7,8 +7,11 @@ import { of, Observable } from 'rxjs';
 })
 export class ApolloService {
   createProduct(product: Product): Observable<Product> {
-    product.id = Math.floor(Math.random() * 1000);
-    return of(product);
+    const result: Product = {
+      ...product,
+      id: Math.floor(Math.random() * 1000),
+    };
+    return of(result);
   }
 
   loadProducts(): Observable<Product[]> {
