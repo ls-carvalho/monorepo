@@ -1,21 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GridComponent } from './grid/grid.component';
-import { FormComponent } from './form/form.component';
+import { GridComponent } from './components/grid/grid.component';
+import { FormComponent } from './components/form/form.component';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import * as fromProduct from './state/product.reducer';
-import { ProductEffects } from './state/product.effects';
+import { DomainEffects } from './state/effects/domain.effects';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DOMAIN_FEATURE_KEY, DomainReducers } from './state';
 
 @NgModule({
   imports: [
     CommonModule,
-    StoreModule.forFeature(
-      fromProduct.PRODUCT_FEATURE_KEY,
-      fromProduct.productReducer
-    ),
-    EffectsModule.forFeature([ProductEffects]),
+    StoreModule.forFeature(DOMAIN_FEATURE_KEY, DomainReducers.domainReducer),
+    EffectsModule.forFeature([DomainEffects]),
     ReactiveFormsModule,
   ],
   declarations: [GridComponent, FormComponent],

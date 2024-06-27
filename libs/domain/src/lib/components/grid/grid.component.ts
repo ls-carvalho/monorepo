@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ProductEntity } from '../state/product.models';
+import { Product } from '../../models';
 
 @Component({
   selector: 'monorepo-grid',
@@ -7,7 +7,7 @@ import { ProductEntity } from '../state/product.models';
   styleUrls: ['./grid.component.scss'],
 })
 export class GridComponent {
-  products: ProductEntity[] = [
+  products: Product[] = [
     { name: 'Product 1', value: 10.99 },
     { name: 'Product 2', value: 20.49 },
     { name: 'Product 3', value: 15.75 },
