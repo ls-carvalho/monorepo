@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Product } from '../../models';
+import { Store } from '@ngrx/store';
+import { DomainSelectos, DomainState } from '../../state';
 
 @Component({
   selector: 'monorepo-grid',
@@ -7,9 +9,10 @@ import { Product } from '../../models';
   styleUrls: ['./grid.component.scss'],
 })
 export class GridComponent {
-  products: Product[] = [
-    { name: 'Product 1', value: 10.99 },
-    { name: 'Product 2', value: 20.49 },
-    { name: 'Product 3', value: 15.75 },
-  ];
+  products: Product[] = [];
+  constructor(private readonly store: Store<DomainState>) {
+    this.store
+      .select(DomainSelectos.selectProducts)
+      .subscribe((products) => (this.products = products));
+  }
 }
