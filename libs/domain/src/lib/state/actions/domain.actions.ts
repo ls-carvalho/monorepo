@@ -14,6 +14,10 @@ export const createProductComplete = createAction(
   props<{ product: Product }>()
 );
 
+export const createProductFailure = createAction(
+  '[Form/API] Create Product Complete'
+);
+
 //
 // Load Product
 //
@@ -22,4 +26,8 @@ export const loadProducts = createAction('[Grid] Load Products');
 export const loadProductsComplete = createAction(
   '[Grid/API] Load Products Complete',
   props<{ products: Product[] }>()
+);
+
+export const loadProductsFailure = createAction(
+  '[Grid/API] Load Products Failure'
 );

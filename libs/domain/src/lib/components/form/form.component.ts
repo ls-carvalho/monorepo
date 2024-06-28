@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomainActions, DomainState } from '../../state';
 import { Store } from '@ngrx/store';
+import { Product } from '../../models';
 
 @Component({
   selector: 'monorepo-form',
@@ -16,9 +17,9 @@ export class FormComponent {
     private readonly store: Store<DomainState>
   ) {
     this.productForm = this.fb.group({
-      name: ['', Validators.required],
+      name: [undefined, Validators.required],
       value: [
-        '',
+        undefined,
         [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)],
       ],
     });
@@ -26,9 +27,12 @@ export class FormComponent {
 
   onSubmit(): void {
     if (this.productForm.valid) {
-      this.store.dispatch(
-        DomainActions.createProduct({ product: this.productForm.value })
-      );
+      const product: Product = {
+        name: this.productForm.value.name,
+        value: parseFloat(this.productForm.value.value),
+      };
+
+      this.store.dispatch(DomainActions.createProduct({ product }));
     }
   }
 }
