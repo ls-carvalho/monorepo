@@ -5,7 +5,7 @@ import { FormComponent } from './components/form/form.component';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { DomainEffects } from './state/effects/domain.effects';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DOMAIN_FEATURE_KEY, DomainReducers } from './state';
 
 @NgModule({
@@ -14,6 +14,7 @@ import { DOMAIN_FEATURE_KEY, DomainReducers } from './state';
     StoreModule.forFeature(DOMAIN_FEATURE_KEY, DomainReducers.domainReducer),
     EffectsModule.forFeature([DomainEffects]),
     ReactiveFormsModule,
+    FormsModule,
   ],
   declarations: [GridComponent, FormComponent],
   exports: [GridComponent, FormComponent],

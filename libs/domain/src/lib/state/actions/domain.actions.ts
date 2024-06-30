@@ -23,3 +23,29 @@ export const loadProductsComplete = createAction(
   '[Grid/API] Load Products Complete',
   props<{ products: Product[] }>()
 );
+
+//
+// Edit Product
+//
+export const editProduct = createAction(
+  '[Grid] Edit Products',
+  props<{ product: Product }>()
+);
+
+export const editProductComplete = createAction(
+  '[Form/API] Edit Product Complete',
+  props<{ product: Product }>()
+);
+
+//
+// Delete Product
+//
+export const deleteProduct = createAction(
+  '[Grid] Delete Products',
+  props<{ productId: number }>()
+);
+
+export const deleteProductComplete = createAction(
+  '[Form/API] Delete Product Complete',
+  props<{ productId: number }>()
+);

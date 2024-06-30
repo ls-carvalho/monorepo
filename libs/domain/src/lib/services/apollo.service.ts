@@ -22,4 +22,11 @@ export class ApolloService {
     ];
     return of(products);
   }
+
+  editProduct(product: Product): Observable<Product> {
+    const updatedProduct: Product = {
+      ...product,
+    };
+    return of(updatedProduct);
+  }
 }
