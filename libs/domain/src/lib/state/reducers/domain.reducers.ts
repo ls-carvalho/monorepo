@@ -13,6 +13,22 @@ export const domainReducer = createReducer(
     };
   }),
 
+  // Edit Product
+  on(DomainActions.editProductComplete, (state, action) => {
+    return {
+      ...state,
+      listProducts: action.products,
+    };
+  }),
+
+  // Delete Product
+  on(DomainActions.deleteProductComplete, (state, action) => {
+    return {
+      ...state,
+      listProducts: action.products,
+    };
+  }),
+
   // Load Product
   on(DomainActions.loadProducts, (state) => {
     return {
