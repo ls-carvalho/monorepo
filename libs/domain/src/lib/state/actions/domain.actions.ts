@@ -19,6 +19,32 @@ export const createProductFailure = createAction(
 );
 
 //
+// Edit Product
+//
+export const editProduct = createAction(
+  '[Form] Edit Product',
+  props<{ product: Product }>()
+);
+
+export const editProductComplete = createAction(
+  '[Form/API] Edit Product Complete',
+  props<{ products: Product[] }>()
+);
+
+//
+// Delete Product
+//
+export const deleteProduct = createAction(
+  '[Form] Delete Product',
+  props<{ id: number }>()
+);
+
+export const deleteProductComplete = createAction(
+  '[Form/API] Delete Product Complete',
+  props<{ products: Product[] }>()
+);
+
+//
 // Load Product
 //
 export const loadProducts = createAction('[Grid] Load Products');
