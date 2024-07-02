@@ -17,9 +17,9 @@ export class FormComponent {
     private readonly store: Store<DomainState>
   ) {
     this.productForm = this.fb.group({
-      name: [undefined, Validators.required],
+      name: ['', Validators.required],
       value: [
-        undefined,
+        '',
         [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)],
       ],
     });

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../models';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Apollo, MutationResult } from 'apollo-angular';
 import { GET_PRODUCTS } from './graphql/queries';
 import { ApolloQueryResult } from '@apollo/client/core';

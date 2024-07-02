@@ -21,7 +21,7 @@ export class GridComponent {
 
   editProduct(index: number): void {
     this.edit = index;
-    this.editedProduct = { ...this.products[index] }; // Make a copy of the product
+    this.editedProduct = { ...this.products[index] };
   }
 
   saveProduct(): void {
