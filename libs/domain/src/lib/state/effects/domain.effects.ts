@@ -13,7 +13,15 @@ export class DomainEffects {
     this.actions$.pipe(
       ofType(DomainActions.createProduct),
       mergeMap((action) => this.apolloService.createProduct(action.product)),
-      map((result) => DomainActions.createProductComplete({ product: result }))
+      map((result) => {
+        if (result.data) {
+          return DomainActions.createProductComplete({
+            product: (result.data as any).createProduct,
+          });
+        } else {
+          return DomainActions.createProductFailure();
+        }
+      })
     )
   );
 
@@ -21,7 +29,15 @@ export class DomainEffects {
     this.actions$.pipe(
       ofType(DomainActions.loadProducts),
       mergeMap(() => this.apolloService.loadProducts()),
-      map((result) => DomainActions.loadProductsComplete({ products: result }))
+      map((result) => {
+        if (result.data) {
+          return DomainActions.loadProductsComplete({
+            products: (result.data as any).readProduct.items,
+          });
+        } else {
+          return DomainActions.loadProductsFailure();
+        }
+      })
     )
   );
 

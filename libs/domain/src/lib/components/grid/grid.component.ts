@@ -13,6 +13,7 @@ export class GridComponent {
   edit: number | null = null;
   editedProduct: Product | null = null;
   constructor(private readonly store: Store<DomainState>) {
+    this.store.dispatch(DomainActions.loadProducts());
     this.store
       .select(DomainSelectos.selectProducts)
       .subscribe((products) => (this.products = products));

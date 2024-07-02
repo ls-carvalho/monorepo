@@ -14,6 +14,10 @@ export const createProductComplete = createAction(
   props<{ product: Product }>()
 );
 
+export const createProductFailure = createAction(
+  '[Form/API] Create Product Complete'
+);
+
 //
 // Load Product
 //
@@ -48,4 +52,8 @@ export const deleteProduct = createAction(
 export const deleteProductComplete = createAction(
   '[Form/API] Delete Product Complete',
   props<{ productId: number }>()
+);
+
+export const loadProductsFailure = createAction(
+  '[Grid/API] Load Products Failure'
 );

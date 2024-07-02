@@ -7,6 +7,10 @@ import { EffectsModule } from '@ngrx/effects';
 import { DomainEffects } from './state/effects/domain.effects';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DOMAIN_FEATURE_KEY, DomainReducers } from './state';
+import { InMemoryCache } from '@apollo/client/core';
+import { APOLLO_OPTIONS, ApolloModule } from 'apollo-angular';
+import { HttpLink } from 'apollo-angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -14,6 +18,22 @@ import { DOMAIN_FEATURE_KEY, DomainReducers } from './state';
     StoreModule.forFeature(DOMAIN_FEATURE_KEY, DomainReducers.domainReducer),
     EffectsModule.forFeature([DomainEffects]),
     ReactiveFormsModule,
+    HttpClientModule,
+    ApolloModule,
+  ],
+  providers: [
+    {
+      provide: APOLLO_OPTIONS,
+      useFactory: (httpLink: HttpLink) => {
+        return {
+          cache: new InMemoryCache(),
+          link: httpLink.create({
+            uri: 'https://localhost:7126/graphql/products/',
+          }),
+        };
+      },
+      deps: [HttpLink],
+    },
     FormsModule,
   ],
   declarations: [GridComponent, FormComponent],
