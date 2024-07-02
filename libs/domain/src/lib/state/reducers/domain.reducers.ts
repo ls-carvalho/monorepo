@@ -25,5 +25,25 @@ export const domainReducer = createReducer(
       ...state,
       listProducts: action.products,
     };
+  }),
+
+  // Edit Product
+  on(DomainActions.editProductComplete, (state, action) => {
+    return {
+      ...state,
+      listProducts: state.listProducts.map((product) =>
+        product.id === action.product.id ? action.product : product
+      ),
+    };
+  }),
+
+  // Delete Product
+  on(DomainActions.deleteProduct, (state, action) => {
+    return {
+      ...state,
+      listProducts: state.listProducts.filter(
+        (product) => product.id !== action.productId
+      ),
+    };
   })
 );

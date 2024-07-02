@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../models';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Apollo, MutationResult } from 'apollo-angular';
 import { GET_PRODUCTS } from './graphql/queries';
 import { ApolloQueryResult } from '@apollo/client/core';
@@ -25,5 +25,12 @@ export class ApolloService {
     return this.apollo.query<Product[]>({
       query: GET_PRODUCTS,
     });
+  }
+
+  editProduct(product: Product): Observable<Product> {
+    const updatedProduct: Product = {
+      ...product,
+    };
+    return of(updatedProduct);
   }
 }

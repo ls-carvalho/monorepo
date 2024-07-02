@@ -6,9 +6,35 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let product of products">
-      <td>{{ product.name }}</td>
-      <td>{{ product.value | currency }}</td>
+    <tr *ngFor="let product of products; let i = index">
+      <td>
+        <ng-container *ngIf="edit === i && editedProduct; else displayProduct">
+          <input [(ngModel)]="editedProduct.name" />
+        </ng-container>
+        <ng-template #displayProduct>
+          <span>{{ product.name }}</span>
+        </ng-template>
+      </td>
+      <td>
+        <ng-container
+          *ngIf="edit === i && editedProduct; else displayProductValue"
+        >
+          <input [(ngModel)]="editedProduct.value" />
+        </ng-container>
+        <ng-template #displayProductValue>
+          <span>{{ product.value | currency }}</span>
+        </ng-template>
+        <button *ngIf="edit !== i" (click)="editProduct(i)">Edit</button>
+        <button *ngIf="edit === i" (click)="saveProduct()">Save</button>
+      </td>
+      <td>
+        <button
+          *ngIf="product.id !== undefined"
+          (click)="deleteProduct(product.id)"
+        >
+          Delete
+        </button>
+      </td>
     </tr>
   </tbody>
 </table>
