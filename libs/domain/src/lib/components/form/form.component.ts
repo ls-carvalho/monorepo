@@ -1,24 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DomainActions, DomainState } from '../../state';
+import { DomainActions, DomainSelectos, DomainState } from '../../state';
 import { Store } from '@ngrx/store';
 import { Product } from '../../models';
-import { EditingService } from '../../services/editing.service';
 
 @Component({
   selector: 'monorepo-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
 })
-export class FormComponent {
-  productForm: FormGroup;
-  isEditing!: boolean;
+export class FormComponent implements OnInit {
+  productForm!: FormGroup;
+  selectedForEdit?: Product;
 
   constructor(
     private fb: FormBuilder,
-    private readonly store: Store<DomainState>,
-    private editingService: EditingService
-  ) {
+    private readonly store: Store<DomainState>
+  ) {}
+
+  ngOnInit() {
     this.productForm = this.fb.group({
       name: [undefined, Validators.required],
       value: [
@@ -26,54 +26,54 @@ export class FormComponent {
         [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)],
       ],
     });
+
+    this.store
+      .select(DomainSelectos.selectProductForEditing)
+      .subscribe((product) => {
+        this.fillForm(product);
+        this.selectedForEdit = product;
+      });
   }
 
-  onSubmit(): void {
-    if (this.productForm.valid) {
-      const product: Product = {
-        name: this.productForm.value.name,
-        value: parseFloat(this.productForm.value.value),
-      };
-
-      this.store.dispatch(DomainActions.createProduct({ product }));
+  fillForm( product: Product | undefined ): void {
+    if( product ) {
+      this.productForm.patchValue(
+        {
+          name: product.name,
+          value: product.value
+        }
+      )
+      return;
     }
-  }
 
-  ngOnInit() {
-    this.editingService.isEditing().subscribe( (boolean) =>
+    this.productForm.patchValue(
       {
-        this.isEditing = boolean;
-        this.productForm.patchValue({
-          name: this.editingService.product.name,
-          value: this.editingService.product.value
-        })
+        name: undefined,
+        value: undefined
       }
     )
   }
 
-  onSubmitSave(): void {
-    if ( this.productForm.valid ) {
-      const product: Product = {
-        name: this.productForm.value.name,
-        value: parseFloat(this.productForm.value.value),
-      };
+  onSubmit(): void {
 
-      this.store.dispatch(DomainActions.createProduct({ product }));
-    }
-  }
+    if( this.productForm.valid ) {
 
-  onSubmitEdit(): void {
-    if ( this.productForm.valid ) {
-      this.store.dispatch(
-        DomainActions.editProduct( {
-          product: {
-            ...this.productForm.value,
-            id: this.editingService.product.id
+      if( this.selectedForEdit ) {
+
+        this.store.dispatch( DomainActions.editProduct(
+          {
+            product: {
+              ...this.productForm.value,
+              id: this.selectedForEdit.id
+            }
           }
-        }
-      ));
-    }
+        ))
 
-    this.editingService.endEditing();
+        this.store.dispatch(DomainActions.selectProductForEditingComplete());
+      }
+      else {
+        this.store.dispatch( DomainActions.createProduct({ product: this.productForm.value }))
+      }
+    }
   }
 }

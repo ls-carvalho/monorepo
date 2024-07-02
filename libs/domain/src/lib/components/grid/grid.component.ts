@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Product } from '../../models';
 import { Store } from '@ngrx/store';
 import { DomainActions, DomainSelectos, DomainState } from '../../state';
-import { EditingService } from '../../services/editing.service';
 
 @Component({
   selector: 'monorepo-grid',
@@ -12,8 +11,7 @@ import { EditingService } from '../../services/editing.service';
 export class GridComponent {
   products: Product[] = [];
   constructor(
-    private readonly store: Store<DomainState>,
-    private editingService: EditingService
+    private readonly store: Store<DomainState>
   ) {
     this.store.dispatch(DomainActions.loadProducts());
     this.store
@@ -22,7 +20,7 @@ export class GridComponent {
   }
 
   onEdit( product: Product ) {
-    this.editingService.startEditing( product );
+    this.store.dispatch(DomainActions.selectProductForEditing( {product: product} ));
   }
 
   onDelete( id: number ) {

@@ -27,11 +27,11 @@ export class ApolloService {
   } */
 
   createProduct(product: Product): Observable<Product> {
-  const result: Product = {
-    ...product,
-    id: Math.floor(Math.random() * 1000),
-  };
-  return of(result);
+    const result: Product = {
+      ...product,
+      id: Math.floor(Math.random() * 1000),
+    };
+    return of(result);
   }
 
   editarProduct( product: Product ): Observable<Product[]> {

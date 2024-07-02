@@ -13,6 +13,20 @@ export const domainReducer = createReducer(
     };
   }),
 
+  // Select Product for Editing
+  on(DomainActions.selectProductForEditing, (state, action) => {
+    return {
+      ...state,
+      selectedProduct: action.product
+    };
+  }),
+  on(DomainActions.selectProductForEditingComplete, (state) => {
+    return {
+      ...state,
+      selectedProduct: undefined
+    };
+  }),
+
   // Edit Product
   on(DomainActions.editProductComplete, (state, action) => {
     return {

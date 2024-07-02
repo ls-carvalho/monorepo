@@ -15,7 +15,19 @@ export const createProductComplete = createAction(
 );
 
 export const createProductFailure = createAction(
-  '[Form/API] Create Product Complete'
+  '[Form/API] Create Product Failure'
+);
+
+//
+// Select Product for Editing
+//
+export const selectProductForEditing = createAction(
+  '[Form] Select Product for Editing',
+  props<{ product: Product }>()
+);
+
+export const selectProductForEditingComplete = createAction(
+  '[Form] Select Product for Editing Complete'
 );
 
 //
