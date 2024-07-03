@@ -31,6 +31,14 @@ import { HttpClientModule } from '@angular/common/http';
           link: httpLink.create({
             uri: 'https://localhost:7126/graphql/products/',
           }),
+          defaultOptions: {
+            mutate: {
+              context: {
+                serializationKey: 'editProduct', // Chave para controle de serialização
+              },
+              removeTypename: true,
+            },
+          },
         };
       },
       deps: [HttpLink],

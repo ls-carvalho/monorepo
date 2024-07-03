@@ -35,7 +35,10 @@ export class ApolloService {
     return this.apollo.mutate<Product>({
       mutation: EDIT_PRODUCT,
       variables: {
-        editProduct: product,
+        updateProduct: {
+          ...product,
+          __typename: undefined,
+        },
       },
     });
   }
@@ -43,7 +46,6 @@ export class ApolloService {
   deleteProduct(productId: number): Observable<MutationResult<Product>> {
     return this.apollo.mutate<Product>({
       mutation: DELETE_PRODUCT,
-
       variables: {
         productId: productId,
       },

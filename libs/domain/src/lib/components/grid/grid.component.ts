@@ -26,9 +26,14 @@ export class GridComponent {
 
   saveProduct(): void {
     if (this.editedProduct) {
+      if (typeof this.editedProduct.value === 'string') {
+        this.editedProduct.value = parseFloat(this.editedProduct.value);
+      }
+
       this.store.dispatch(
-        DomainActions.editProductComplete({ product: this.editedProduct })
+        DomainActions.editProduct({ product: this.editedProduct })
       );
+
       this.edit = null;
       this.editedProduct = null;
     }

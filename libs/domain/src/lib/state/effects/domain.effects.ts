@@ -49,7 +49,7 @@ export class DomainEffects {
           map((result) => {
             if (result.data) {
               return DomainActions.editProductComplete({
-                product: (result.data as any).editProduct,
+                product: (result.data as any).updateProduct,
               });
             } else {
               return DomainActions.editProductFailure();
