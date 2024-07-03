@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { map, mergeMap } from 'rxjs';
+import { map, mergeMap, switchMap } from 'rxjs';
 import { DomainActions } from '..';
 import { ApolloService } from '../../services';
 
@@ -38,6 +38,44 @@ export class DomainEffects {
           return DomainActions.loadProductsFailure();
         }
       })
+    )
+  );
+
+  editProduct$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(DomainActions.editProduct),
+      mergeMap((action) =>
+        this.apolloService.editProduct(action.product).pipe(
+          map((result) => {
+            if (result.data) {
+              return DomainActions.editProductComplete({
+                product: (result.data as any).updateProduct,
+              });
+            } else {
+              return DomainActions.editProductFailure();
+            }
+          })
+        )
+      )
+    )
+  );
+
+  deleteProduct$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(DomainActions.deleteProduct),
+      mergeMap((action) =>
+        this.apolloService.deleteProduct(action.productId).pipe(
+          map((result) => {
+            if (result.data) {
+              return DomainActions.deleteProductComplete({
+                productId: action.productId,
+              });
+            } else {
+              return DomainActions.deleteProductFailure();
+            }
+          })
+        )
+      )
     )
   );
 

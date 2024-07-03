@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomainActions, DomainState } from '../../state';
 import { Store } from '@ngrx/store';
-import { Product } from '../../models';
+import { Product } from '@monorepo/domain';
 
 @Component({
   selector: 'monorepo-form',
@@ -28,11 +28,24 @@ export class FormComponent {
   onSubmit(): void {
     if (this.productForm.valid) {
       const product: Product = {
+        id: this.productForm.value.id,
         name: this.productForm.value.name,
         value: parseFloat(this.productForm.value.value),
       };
 
-      this.store.dispatch(DomainActions.createProduct({ product }));
+      if (product.id) {
+        this.store.dispatch(DomainActions.editProduct({ product }));
+      } else {
+        this.store.dispatch(DomainActions.createProduct({ product }));
+      }
     }
+  }
+
+  loadProductEdit(product: Product): void {
+    this.productForm.setValue({
+      id: product.id,
+      name: product.name,
+      value: product.value,
+    });
   }
 }

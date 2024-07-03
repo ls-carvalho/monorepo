@@ -31,3 +31,37 @@ export const loadProductsComplete = createAction(
 export const loadProductsFailure = createAction(
   '[Grid/API] Load Products Failure'
 );
+
+//
+// Edit Product
+//
+export const editProduct = createAction(
+  '[Grid] Edit Products',
+  props<{ product: Product }>()
+);
+
+export const editProductComplete = createAction(
+  '[Form/API] Edit Product Complete',
+  props<{ product: Product }>()
+);
+
+export const editProductFailure = createAction(
+  '[Form/API] Create Product Complete'
+);
+
+//
+// Delete Product
+//
+export const deleteProduct = createAction(
+  '[Grid] Delete Products',
+  props<{ productId: number }>()
+);
+
+export const deleteProductComplete = createAction(
+  '[Form/API] Delete Product Complete',
+  props<{ productId: number }>()
+);
+
+export const deleteProductFailure = createAction(
+  '[Form/API] Create Product Complete'
+);
