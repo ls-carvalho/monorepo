@@ -60,6 +60,10 @@ export const deleteProductComplete = createAction(
   props<{ products: Product[] }>()
 );
 
+export const deleteProductFailure = createAction(
+  '[Form/API] Delete Product Failure',
+);
+
 //
 // Load Product
 //

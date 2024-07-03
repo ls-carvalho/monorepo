@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { map, mergeMap, withLatestFrom } from 'rxjs';
+import { map, mergeMap, tap, withLatestFrom } from 'rxjs';
 import { DomainActions, DomainSelectos, DomainState } from '..';
 import { ApolloService } from '../../services';
-import { Store, select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { Product } from '../../models';
 
 @Injectable()
@@ -27,14 +27,6 @@ export class DomainEffects {
       })
     )
   );
-
-  /* editProduct$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(DomainActions.editProduct),
-      mergeMap((action) => this.apolloService.editarProduct(action.product)),
-      map((products) => DomainActions.editProductComplete({ products: products }))
-    )
-  ); */
 
   editProduct$ = createEffect(() =>
     this.actions$.pipe(
@@ -70,8 +62,8 @@ export class DomainEffects {
       withLatestFrom(this.store.select(DomainSelectos.selectProducts)),
       map(([result, productsFromState]) => {
         if (result.data) {
-          const idToDelete: number = (result.data as any).deleteProduct.$id;
-          const filteredList = productsFromState.filter( elem => elem.id !== idToDelete);
+          const idToDelete: number = (result.data as any).deleteProduct.id;
+          const filteredList = productsFromState.filter(elem => elem.id !== idToDelete);
           return DomainActions.deleteProductComplete({
             products: filteredList
           });

@@ -75,8 +75,6 @@ export class FormComponent implements OnInit {
         this.store.dispatch(DomainActions.selectProductForEditingComplete());
       }
       else {
-        console.log(this.productForm.value.value);
-
         this.store.dispatch( DomainActions.createProduct({ product: {
           name: this.productForm.value.name,
           value: parseFloat(this.productForm.value.value)

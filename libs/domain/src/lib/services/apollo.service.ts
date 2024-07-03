@@ -43,19 +43,6 @@ export class ApolloService {
     });
   }
 
-  /* deleteProduct( id: number ): Observable<Product[]> {
-    let products: Product[] = [];
-
-    this.store
-      .select(DomainSelectos.selectProducts).subscribe(
-        (value) => products = value 
-      ).unsubscribe();
-    
-    products = products.filter( product => product.id !== id );
-    
-    return of(products);
-  } */
-
   deleteProduct( id: number ): Observable<MutationResult<Product>> {
     return this.apollo.mutate<Product>({
       mutation: DELETE_PRODUCT,

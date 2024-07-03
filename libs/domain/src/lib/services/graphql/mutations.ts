@@ -22,7 +22,7 @@ export const EDIT_PRODUCT = gql`
 
 export const DELETE_PRODUCT = gql`
   mutation deleteProduct($id: Long!) {
-    deleteProduct(id: $deleteProduct) {
+    deleteProduct(id: $id) {
       id
     }
   }
