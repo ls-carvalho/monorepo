@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../models';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Apollo, MutationResult } from 'apollo-angular';
 import { GET_PRODUCTS } from './graphql/queries';
 import { ApolloQueryResult } from '@apollo/client/core';
 import { CREATE_PRODUCT, DELETE_PRODUCT, EDIT_PRODUCT } from './graphql/mutations';
-import { DomainSelectos, DomainState } from '../state';
+import { DomainState } from '../state';
 import { Store } from '@ngrx/store';
 
 @Injectable({
@@ -25,14 +25,6 @@ export class ApolloService {
       },
     });
   }
-
-  /* createProduct(product: Product): Observable<Product> {
-    const result: Product = {
-      ...product,
-      id: Math.floor(Math.random() * 1000),
-    };
-    return of(result);
-  } */
 
   editarProduct( product: Product ): Observable<MutationResult<Product>> {
     return this.apollo.mutate<Product>({

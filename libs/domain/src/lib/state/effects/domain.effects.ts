@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { map, mergeMap, tap, withLatestFrom } from 'rxjs';
+import { map, mergeMap, withLatestFrom } from 'rxjs';
 import { DomainActions, DomainSelectos, DomainState } from '..';
 import { ApolloService } from '../../services';
 import { Store } from '@ngrx/store';
