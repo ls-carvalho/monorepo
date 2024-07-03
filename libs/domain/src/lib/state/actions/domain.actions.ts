@@ -43,6 +43,10 @@ export const editProductComplete = createAction(
   props<{ products: Product[] }>()
 );
 
+export const editProductFailure = createAction(
+  '[Form/API] Edit Product Failure'
+);
+
 //
 // Delete Product
 //

@@ -12,6 +12,11 @@ export const domainReducer = createReducer(
       listProducts: [...state.listProducts, action.product],
     };
   }),
+  on(DomainActions.createProductFailure, (state) => {
+    return {
+      ...state,
+    };
+  }),
 
   // Select Product for Editing
   on(DomainActions.selectProductForEditing, (state, action) => {

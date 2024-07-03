@@ -62,17 +62,25 @@ export class FormComponent implements OnInit {
 
         this.store.dispatch( DomainActions.editProduct(
           {
-            product: {
-              ...this.productForm.value,
-              id: this.selectedForEdit.id
+            product: 
+              {
+                name: this.productForm.value.name,
+                value: parseFloat(this.productForm.value.value),
+                id: this.selectedForEdit.id
+              }
             }
-          }
+          
         ))
 
         this.store.dispatch(DomainActions.selectProductForEditingComplete());
       }
       else {
-        this.store.dispatch( DomainActions.createProduct({ product: this.productForm.value }))
+        console.log(this.productForm.value.value);
+
+        this.store.dispatch( DomainActions.createProduct({ product: {
+          name: this.productForm.value.name,
+          value: parseFloat(this.productForm.value.value)
+        } }))
       }
     }
   }
