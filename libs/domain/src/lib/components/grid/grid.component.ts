@@ -10,10 +10,24 @@ import { DomainActions, DomainSelectos, DomainState } from '../../state';
 })
 export class GridComponent {
   products: Product[] = [];
-  constructor(private readonly store: Store<DomainState>) {
+  constructor(
+    private readonly store: Store<DomainState>
+  ) {
     this.store.dispatch(DomainActions.loadProducts());
     this.store
       .select(DomainSelectos.selectProducts)
       .subscribe((products) => (this.products = products));
+  }
+
+  onEdit( product: Product ) {
+    this.store.dispatch(DomainActions.selectProductForEditing( {product: product} ));
+  }
+
+  onDelete( id: number ) {
+    if ( id !== undefined ) {
+      this.store.dispatch(
+        DomainActions.deleteProduct({ id: id })
+      );
+    }
   }
 }

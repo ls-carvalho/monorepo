@@ -7,4 +7,10 @@ export const selectDomainState =
 export const selectProducts = createSelector(
   selectDomainState,
   (state: DomainState) => state.listProducts
-);
+)
+
+export const selectProductForEditing = createSelector(
+  selectDomainState,
+  (state: DomainState) => state.selectedProduct
+)
+;

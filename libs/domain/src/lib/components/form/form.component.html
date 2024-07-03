@@ -30,5 +30,5 @@
     </div>
   </div>
 
-  <button type="submit" [disabled]="productForm.invalid">Save Product</button>
+  <button type="submit" [disabled]="productForm.invalid">{{selectedForEdit ? "Edit Product" : "Save Product"}}</button>
 </form>

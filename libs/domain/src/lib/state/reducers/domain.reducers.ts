@@ -12,6 +12,41 @@ export const domainReducer = createReducer(
       listProducts: [...state.listProducts, action.product],
     };
   }),
+  on(DomainActions.createProductFailure, (state) => {
+    return {
+      ...state,
+    };
+  }),
+
+  // Select Product for Editing
+  on(DomainActions.selectProductForEditing, (state, action) => {
+    return {
+      ...state,
+      selectedProduct: action.product
+    };
+  }),
+  on(DomainActions.selectProductForEditingComplete, (state) => {
+    return {
+      ...state,
+      selectedProduct: undefined
+    };
+  }),
+
+  // Edit Product
+  on(DomainActions.editProductComplete, (state, action) => {
+    return {
+      ...state,
+      listProducts: action.products,
+    };
+  }),
+
+  // Delete Product
+  on(DomainActions.deleteProductComplete, (state, action) => {
+    return {
+      ...state,
+      listProducts: action.products,
+    };
+  }),
 
   // Load Product
   on(DomainActions.loadProducts, (state) => {
