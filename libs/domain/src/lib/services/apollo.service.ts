@@ -5,16 +5,13 @@ import { Apollo, MutationResult } from 'apollo-angular';
 import { GET_PRODUCTS } from './graphql/queries';
 import { ApolloQueryResult } from '@apollo/client/core';
 import { CREATE_PRODUCT, DELETE_PRODUCT, EDIT_PRODUCT } from './graphql/mutations';
-import { DomainState } from '../state';
-import { Store } from '@ngrx/store';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApolloService {
   constructor(
-    private readonly apollo: Apollo,
-    private readonly store: Store<DomainState>
+    private readonly apollo: Apollo
   ) {}
 
   createProduct(product: Product): Observable<MutationResult<Product>> {
