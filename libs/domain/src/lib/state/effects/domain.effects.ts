@@ -45,11 +45,36 @@ export class DomainEffects {
     this.actions$.pipe(
       ofType(DomainActions.editProduct),
       mergeMap((action) =>
-        this.apolloService
-          .editProduct(action.product)
-          .pipe(
-            map((product) => DomainActions.editProductComplete({ product }))
-          )
+        this.apolloService.editProduct(action.product).pipe(
+          map((result) => {
+            if (result.data) {
+              return DomainActions.editProductComplete({
+                product: (result.data as any).editProduct,
+              });
+            } else {
+              return DomainActions.editProductFailure();
+            }
+          })
+        )
+      )
+    )
+  );
+
+  deleteProduct$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(DomainActions.deleteProduct),
+      mergeMap((action) =>
+        this.apolloService.deleteProduct(action.productId).pipe(
+          map((result) => {
+            if (result.data) {
+              return DomainActions.deleteProductComplete({
+                productId: action.productId,
+              });
+            } else {
+              return DomainActions.deleteProductFailure();
+            }
+          })
+        )
       )
     )
   );

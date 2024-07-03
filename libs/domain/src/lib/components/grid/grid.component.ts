@@ -27,7 +27,7 @@ export class GridComponent {
   saveProduct(): void {
     if (this.editedProduct) {
       this.store.dispatch(
-        DomainActions.editProduct({ product: this.editedProduct })
+        DomainActions.editProductComplete({ product: this.editedProduct })
       );
       this.edit = null;
       this.editedProduct = null;

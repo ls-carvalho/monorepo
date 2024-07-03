@@ -17,9 +17,9 @@ export class FormComponent {
     private readonly store: Store<DomainState>
   ) {
     this.productForm = this.fb.group({
-      name: ['', Validators.required],
+      name: [undefined, Validators.required],
       value: [
-        '',
+        undefined,
         [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)],
       ],
     });
@@ -27,7 +27,12 @@ export class FormComponent {
 
   onSubmit(): void {
     if (this.productForm.valid) {
-      const product: Product = this.productForm.value;
+      const product: Product = {
+        id: this.productForm.value.id,
+        name: this.productForm.value.name,
+        value: parseFloat(this.productForm.value.value),
+      };
+
       if (product.id) {
         this.store.dispatch(DomainActions.editProduct({ product }));
       } else {
